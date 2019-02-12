@@ -38,7 +38,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 102,
+   "execution_count": 145,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -69,7 +69,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 103,
+   "execution_count": 146,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -79,7 +79,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 104,
+   "execution_count": 147,
    "metadata": {},
    "outputs": [
     {
@@ -195,7 +195,7 @@
        "4          30.0        30       2019-01-20        2019-01-17  "
       ]
      },
-     "execution_count": 104,
+     "execution_count": 147,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -234,16 +234,16 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 105,
+   "execution_count": 148,
    "metadata": {},
    "outputs": [],
    "source": [
     "# convert to dates\n",
     "\n",
-    "# importing datetime module\n",
+    "# import datetime module\n",
     "from datetime import datetime \n",
     "\n",
-    "# converting the appilcationDate, repaymentDueDate and repaymentPaidDate in the dataframes to datetimes\n",
+    "# convert the appilcationDate, repaymentDueDate and repaymentPaidDate in the dataframes to datetimes\n",
     "appDataFrame['appilcationDate'] =  pd.to_datetime(appDataFrame['appilcationDate'],format='%Y-%m-%d')\n",
     "appDataFrame['repaymentDueDate'] =  pd.to_datetime(appDataFrame['repaymentDueDate'],format='%Y-%m-%d')\n",
     "appDataFrame['repaymentPaidDate'] =  pd.to_datetime(appDataFrame['repaymentPaidDate'],format='%Y-%m-%d')"
@@ -258,20 +258,21 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 106,
+   "execution_count": 149,
    "metadata": {},
    "outputs": [
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "The numbers of unique data types contained within the application dataset =  4\n"
+      "The numbers of unique data types contained within the application dataset is =  4\n"
      ]
     }
    ],
    "source": [
     "# data types\n",
-    "print('The numbers of unique data types contained within the application dataset = ', appDataFrame.dtypes.nunique() )"
+    "# Print The numbers of unique data types contained within the application dataset\n",
+    "print('The numbers of unique data types contained within the application dataset is = ', appDataFrame.dtypes.nunique() )"
    ]
   },
   {
@@ -290,7 +291,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 107,
+   "execution_count": 151,
    "metadata": {},
    "outputs": [
     {
@@ -303,13 +304,16 @@
    ],
    "source": [
     "# 2a avg loan amount\n",
+    "# Calculate the average loan amount\n",
     "averageLoanAmount = appDataFrame[\"LoanAmount\"].mean()\n",
+    "\n",
+    "# Print The average loan amount\n",
     "print(\"The average loan amount is \", round(averageLoanAmount, 2))"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 108,
+   "execution_count": 153,
    "metadata": {},
    "outputs": [
     {
@@ -322,13 +326,16 @@
    ],
    "source": [
     "# 2b avg interest rate\n",
+    "# Calculate the average interest rate\n",
     "averageInterestRate = appDataFrame[\"InterestRate\"].mean()\n",
+    "\n",
+    "# print the average interest rate\n",
     "print(\"The average interest rate is \", round(averageInterestRate, 2))"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 109,
+   "execution_count": 155,
    "metadata": {},
    "outputs": [
     {
@@ -341,7 +348,10 @@
    ],
    "source": [
     "# 2c avg term days \n",
+    "# Calculate the average term days\n",
     "averageTermDays = appDataFrame[\"TermDays\"].mean()\n",
+    "\n",
+    "# print the average term days\n",
     "print(\"The average term days is \", round(averageTermDays, 2))"
    ]
   },
@@ -370,7 +380,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 110,
+   "execution_count": 156,
    "metadata": {},
    "outputs": [
     {
@@ -492,7 +502,7 @@
        "4          30.0        30       2019-01-20        2019-01-17         3 days  "
       ]
      },
-     "execution_count": 110,
+     "execution_count": 156,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -505,7 +515,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 111,
+   "execution_count": 157,
    "metadata": {},
    "outputs": [
     {
@@ -523,6 +533,8 @@
     "appDataFrame['dateDifference'] = appDataFrame['dateDifference'].astype('int')\n",
     "appDataFrame['greaterThan3'] = appDataFrame['dateDifference'] < -3\n",
     "appDataFrame.greaterThan3.value_counts()\n",
+    "\n",
+    "# Print the number of loans that were paid more than 3 days late\n",
     "print(\"The number of loans that were paid more than 3 days late = \", (appDataFrame['greaterThan3']==1).sum()) "
    ]
   },
@@ -551,7 +563,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 112,
+   "execution_count": 160,
    "metadata": {},
    "outputs": [
     {
@@ -559,22 +571,22 @@
      "output_type": "stream",
      "text": [
       "The mean loan amount in 30-day loans is =  7941.96\n",
-      "The tandard deviation of loan amount in 90-day loans is =  18050.14\n"
+      "The standard deviation of loan amount in 90-day loans is =  18050.14\n"
      ]
     }
    ],
    "source": [
     "# Mean loan amount in 30-day loans and standard deviation of loan amount in 90-day loans\n",
     "\n",
-    "# Mean loan amount in 30-day loans \n",
+    "# Calculate mean loan amount in 30-day loans \n",
     "meanLoanAmountIn30DaysLoans = round(appDataFrame.groupby('TermDays').get_group(30).mean().LoanAmount, 2)\n",
     "\n",
-    "# Standard deviation of loan amount in 90-day loans\n",
+    "# Calculate standard deviation of loan amount in 90-day loans\n",
     "stdOfLoanAmountIn90DayLoans = round(appDataFrame.groupby('TermDays').get_group(90).std().LoanAmount, 2)\n",
     "\n",
-    "# Print out the values\n",
+    "# Print the values of the Mean loan amount in 30-day loans and standard deviation of loan amount in 90-day loans\n",
     "print(\"The mean loan amount in 30-day loans is = \", meanLoanAmountIn30DaysLoans )\n",
-    "print(\"The tandard deviation of loan amount in 90-day loans is = \", stdOfLoanAmountIn90DayLoans )\n",
+    "print(\"The standard deviation of loan amount in 90-day loans is = \", stdOfLoanAmountIn90DayLoans )\n",
     "\n"
    ]
   },
@@ -603,7 +615,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 126,
+   "execution_count": 161,
    "metadata": {},
    "outputs": [
     {
@@ -619,12 +631,13 @@
     "appDataFrame['week_of_year'] = appDataFrame['appilcationDate'].dt.week\n",
     "appDataFrame['LoanAppliedForIn2ndWeek'] = appDataFrame['week_of_year']  == 2\n",
     "\n",
-    "#The average number of days that these loans were paid beyond their due date for each week of the year\n",
+    "# Calculate the average number of days that the loans were paid beyond their due date for each week of the year\n",
     "appDataFrame.groupby('week_of_year').mean().dateDifference\n",
     "\n",
-    "#The average number of days that late loans applied for in the second week of the year were paid late\n",
+    "# Calculate the average number of days that late loans applied for in the second week of the year were paid late\n",
     "averageNumberOfDaysof2ndWeek = round(appDataFrame.groupby('week_of_year').get_group(2).mean().dateDifference, 2)\n",
     "\n",
+    "# Print the average number of days that late loans applied for in the second week of the year were paid late\n",
     "print(\"The average number of days that late loans applied for in the second week of the year were paid late is = \", averageNumberOfDaysof2ndWeek)\n",
     "\n"
    ]
